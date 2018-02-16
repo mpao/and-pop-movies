@@ -1,6 +1,7 @@
 package io.github.mpao.popmovies;
 
 import android.databinding.DataBindingUtil;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,6 +10,8 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.Arrays;
+import java.util.List;
+
 import io.github.mpao.popmovies.databinding.ActivityMainBinding;
 import io.github.mpao.popmovies.network.Config;
 import io.github.mpao.popmovies.network.MovieDeserializer;
@@ -35,6 +38,14 @@ public class MainActivity extends AppCompatActivity {
         mainActivity.list.setHasFixedSize(true);
 
         //get data and set the adapter
+        mainActivity.refresh.setColorSchemeColors(getResources().getColor(R.color.colorAccent));
+        mainActivity.refresh.setRefreshing(true);
+        mainActivity.refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                MainActivity.this.getData();
+            }
+        });
         this.getData();
 
     }
@@ -53,8 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Movie[] data = response.body();
                 if( data!=null ) {
-                    MoviesAdapter adapter = new MoviesAdapter(Arrays.asList(data));
-                    mainActivity.list.setAdapter(adapter);
+                    MainActivity.this.setAdapter( Arrays.asList(data) );
                 }
 
             }
@@ -63,11 +73,20 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Call<Movie[]> call, Throwable t) {
 
                 Toast.makeText(MainActivity.this, getString(R.string.network_error), Toast.LENGTH_LONG).show();
-                t.printStackTrace();
+                MainActivity.this.setAdapter(null);
 
             }
 
         });
 
     }
+
+    private void setAdapter(List<Movie> list){
+
+        MoviesAdapter adapter = new MoviesAdapter(list);
+        mainActivity.list.setAdapter(adapter);
+        mainActivity.refresh.setRefreshing(false);
+
+    }
+
 }
