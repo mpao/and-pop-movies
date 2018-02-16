@@ -12,7 +12,7 @@ import io.github.mpao.popmovies.databinding.PosterBinding;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
 
-    private List<Movie> list;
+    private final List<Movie> list;
     private Context context;
     @SuppressWarnings("FieldCanBeLocal")
     private final String IMAGE_DOMAIN = "http://image.tmdb.org/t/p/w185";
@@ -53,7 +53,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
      */
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private PosterBinding posterVIew;
+        private final PosterBinding posterVIew;
 
         private ViewHolder( PosterBinding binding ){
             super( binding.getRoot() );
