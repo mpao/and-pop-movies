@@ -14,7 +14,6 @@ import com.google.gson.GsonBuilder;
 import java.util.Arrays;
 import java.util.List;
 import io.github.mpao.popmovies.databinding.ActivityMainBinding;
-import io.github.mpao.popmovies.network.Config;
 import io.github.mpao.popmovies.network.MovieDeserializer;
 import io.github.mpao.popmovies.network.MoviesApi;
 import retrofit2.Call;
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         Gson gson = new GsonBuilder().registerTypeAdapter(Movie[].class, new MovieDeserializer()).create();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Config.API_URL)
+                .baseUrl(getString(R.string.api_baseurl))
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         MoviesApi api = retrofit.create(MoviesApi.class);
