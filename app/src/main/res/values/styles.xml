@@ -17,4 +17,15 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="DetailTitle" parent="AppTheme.NoActionBar">
+        <item name="android:textSize">@dimen/text_size_mid</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="DetailText" parent="AppTheme.NoActionBar">
+        <item name="android:textSize">@dimen/text_size_def</item>
+    </style>
+    <style name="DetailRate" parent="AppTheme.NoActionBar">
+        <item name="android:textSize">@dimen/text_size_big</item>
+    </style>
+
 </resources>

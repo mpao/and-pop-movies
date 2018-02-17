@@ -1,18 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="io.github.mpao.popmovies.DetailActivity"
-    tools:showIn="@layout/activity_detail">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="Hello"/>
+    <data>
+        <variable
+            name="movie"
+            type="io.github.mpao.popmovies.Movie"/>
+    </data>
 
-</android.support.v4.widget.NestedScrollView>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="io.github.mpao.popmovies.DetailActivity"
+        tools:showIn="@layout/activity_detail">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/default_margin">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:text="@{movie.title}"
+                style="@style/DetailTitle"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/thumbnail"
+                tools:text="Contact"/>
+
+            <TextView
+                android:id="@+id/synopsis"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:text="@{movie.overview}"
+                style="@style/DetailText"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                tools:text="Dr. Ellie Arroway works for the SETI program at the Arecibo Observatory in Puerto Rico. Guided into science and communication by her now-deceased father, she listens to radio emissions from space, hoping to find evidence of alien life. David Drumlin, the president's science advisor, pulls the funding from SETI, because he believes the endeavor is futile. Arroway gains backing from secretive billionaire industrialist S. R. Hadden, which allows her to continue the project at the Very Large Array in New Mexico. Four years later, with Drumlin seeking to close SETI, Arroway discovers a signal repeating a sequence of prime numbers, apparently sent from the star system Vega some 26 light-years away. This announcement causes Drumlin and the National Security Council led by Michael Kitz to attempt to take control of the facility. Arroway's team then discover a video buried in the signal: Adolf Hitler's opening address at the 1936 Summer Olympics in Berlin. Arroway and her team postulate that this would have been the first television signal strong enough to leave Earth's atmosphere, taking 26 years to reach Vega and then being transmitted back from there."/>
+
+            <TextView
+                android:id="@+id/rating"
+                style="@style/DetailRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                android:text="@{movie.voteAverage}"
+                app:layout_constraintStart_toEndOf="@+id/thumbnail"
+                app:layout_constraintTop_toBottomOf="@+id/release_date"
+                tools:text="10/10"/>
+
+            <TextView
+                android:id="@+id/release_date"
+                style="@style/DetailText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:text="@{movie.releaseDate}"
+                app:layout_constraintStart_toEndOf="@+id/thumbnail"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="1997"/>
+
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="@dimen/thumbnail_width"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@{movie.title}"
+                android:scaleType="fitCenter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@mipmap/ic_launcher"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</layout>
