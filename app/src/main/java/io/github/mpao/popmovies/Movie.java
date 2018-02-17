@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Map the json to a POJO rappresenting a movie for Gson serializing
+ */
 @SuppressWarnings("unused")
 public class Movie {
 

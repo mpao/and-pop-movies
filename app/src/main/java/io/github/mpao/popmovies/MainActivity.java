@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        // on menu selected item, change the order type and
+        // request remote data accordingly.
         switch ( item.getItemId() ){
             case R.id.action_popular : orderType = R.id.action_popular; break;
             case R.id.action_rated   : orderType = R.id.action_rated; break;
@@ -74,12 +76,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void getData(){
 
+        // prepare retrofit stuff
         Gson gson = new GsonBuilder().registerTypeAdapter(Movie[].class, new MovieDeserializer()).create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.api_baseurl))
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         MoviesApi api = retrofit.create(MoviesApi.class);
+
+        // prepare the common Callback for both methods, popular and top rated movies
         Callback<Movie[]> callback = new Callback<Movie[]>() {
             @Override
             public void onResponse(Call<Movie[]> call, Response<Movie[]> response) {
@@ -94,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.setAdapter(null);
             }
         };
+
+        // execute the right method according to the sorting preference
         if( orderType == R.id.action_popular) {
             api.getPopularMovies(getString(R.string.tmdb_key)).enqueue(callback);
         }else{
@@ -102,6 +109,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Set the adapter for the API returned object and hide the
+     * waiting loader
+     * @param list Object to show in the adapter
+     */
     private void setAdapter(List<Movie> list){
 
         MoviesAdapter adapter = new MoviesAdapter(list);

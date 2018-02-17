@@ -13,6 +13,10 @@ public class MovieDeserializer implements JsonDeserializer<Movie[]> {
     @Override
     public Movie[] deserialize(JsonElement je, Type type, JsonDeserializationContext jdc) throws JsonParseException {
 
+        /*
+         Get the "results" element of the json provided by the API and trasform it in a
+         array of Movie objects
+         */
         JsonElement data = je.getAsJsonObject().get("results");
         return new Gson().fromJson(data, type);
 
