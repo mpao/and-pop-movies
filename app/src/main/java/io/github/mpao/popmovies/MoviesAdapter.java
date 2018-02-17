@@ -14,8 +14,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
     private final List<Movie> list;
     private Context context;
-    @SuppressWarnings("FieldCanBeLocal")
-    private final String IMAGE_DOMAIN = "http://image.tmdb.org/t/p/w185";
 
     public MoviesAdapter(List<Movie> list){
 
@@ -62,7 +60,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
         public void bind(final Movie movie){
             posterVIew.setPoster( movie );
-            Picasso.with(context).load( IMAGE_DOMAIN.concat( movie.getPosterPath()) ).into(posterVIew.posterImage);
+            String imageUrl = context.getString(R.string.api_imageurl).concat( movie.getPosterPath() );
+            Picasso.with(context).load( imageUrl ).into(posterVIew.posterImage);
             posterVIew.posterImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

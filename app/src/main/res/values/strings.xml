@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Pop Movies</string>
     <string name="api_baseurl">http://api.themoviedb.org</string>
+    <string name="api_imageurl">http://image.tmdb.org/t/p/w185</string>
     <string name="network_error">Oh no! Something goes wrong :|</string>
     <string name="order_popular">Most popular</string>
     <string name="order_rated">Top rated</string>
