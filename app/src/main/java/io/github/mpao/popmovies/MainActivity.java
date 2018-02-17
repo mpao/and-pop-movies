@@ -6,12 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.Arrays;
 import java.util.List;
-
 import io.github.mpao.popmovies.databinding.ActivityMainBinding;
 import io.github.mpao.popmovies.network.Config;
 import io.github.mpao.popmovies.network.MovieDeserializer;
@@ -25,6 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding mainActivity;
+    private int orderType = R.id.action_popular; // default order
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch ( item.getItemId() ){
+            case R.id.action_popular : orderType = R.id.action_popular; break;
+            case R.id.action_rated   : orderType = R.id.action_rated; break;
+        }
+        mainActivity.refresh.setRefreshing(true);
+        this.getData();
+        return super.onOptionsItemSelected(item);
+
+    }
+
     private void getData(){
 
         Gson gson = new GsonBuilder().registerTypeAdapter(Movie[].class, new MovieDeserializer()).create();
@@ -58,26 +81,25 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         MoviesApi api = retrofit.create(MoviesApi.class);
-        api.getPopularMovies( getString(R.string.tmdb_key) ).enqueue(new Callback<Movie[]>() {
+        Callback<Movie[]> callback = new Callback<Movie[]>() {
             @Override
             public void onResponse(Call<Movie[]> call, Response<Movie[]> response) {
-
                 Movie[] data = response.body();
                 if( data!=null ) {
                     MainActivity.this.setAdapter( Arrays.asList(data) );
                 }
-
             }
-
             @Override
             public void onFailure(Call<Movie[]> call, Throwable t) {
-
                 Toast.makeText(MainActivity.this, getString(R.string.network_error), Toast.LENGTH_LONG).show();
                 MainActivity.this.setAdapter(null);
-
             }
-
-        });
+        };
+        if( orderType == R.id.action_popular) {
+            api.getPopularMovies(getString(R.string.tmdb_key)).enqueue(callback);
+        }else{
+            api.getTopRatedMovies(getString(R.string.tmdb_key)).enqueue(callback);
+        }
 
     }
 

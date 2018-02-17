@@ -2,4 +2,6 @@
     <string name="app_name">Pop Movies</string>
     <string name="action_settings">Settings</string>
     <string name="network_error">Oh no! Something goes wrong :|</string>
+    <string name="order_popular">Most popular</string>
+    <string name="order_rated">Top rated</string>
 </resources>
