@@ -17,7 +17,7 @@ public class DetailActivity extends AppCompatActivity {
         detailActivity = DataBindingUtil.setContentView(this, R.layout.activity_detail);
 
         // get intent information about the movie
-        Movie movie = getIntent().getParcelableExtra("movie");
+        Movie movie = getIntent().getParcelableExtra("movie"); //todo check null
 
         //set the toolbar with the movie title
         detailActivity.toolbar.setTitle( movie.getTitle() );

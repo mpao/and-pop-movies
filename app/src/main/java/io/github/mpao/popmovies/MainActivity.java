@@ -25,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding mainActivity;
-    private int orderType = R.id.action_popular; // default order
+    private int orderType = R.id.action_popular; //todo move in preference ?
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.getData();
             }
         });
-        this.getData();
+        this.getData(); //todo save state of list, avoid network request
 
     }
 
