@@ -19,7 +19,7 @@ import io.github.mpao.popmovies.viewmodels.MoviesViewModel;
 public class MoviesFragment extends Fragment {
 
     private MovieFragmentBinding binding;
-    private static final String TYPE = "";
+    private static final String TYPE = "type";
 
     public MoviesFragment() {
         // Required empty public constructor
@@ -53,7 +53,7 @@ public class MoviesFragment extends Fragment {
 
     }
 
-        @Override
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate( inflater, R.layout.movie_fragment, container, false);

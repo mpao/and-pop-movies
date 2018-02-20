@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         MainActivityBinding binding = DataBindingUtil.setContentView(this, R.layout.main_activity);
-        insertFragment( DEFAULT );
+        insertFragment( DEFAULT ); //todo rotation state, recyclerview state
 
         // set up the bottom menu navigation
         binding.navigation.setOnNavigationItemSelectedListener( item -> {
