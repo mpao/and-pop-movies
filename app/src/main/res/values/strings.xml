@@ -5,4 +5,7 @@
     <string name="network_error">Oh no! Something goes wrong :|</string>
     <string name="order_popular">Most popular</string>
     <string name="order_rated">Top rated</string>
+    <string name="title_popular">Popular</string>
+    <string name="title_rated">Top Rated</string>
+    <string name="title_favorites">Favorites</string>
 </resources>

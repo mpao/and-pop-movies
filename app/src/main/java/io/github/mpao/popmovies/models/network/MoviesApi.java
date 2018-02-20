@@ -1,6 +1,6 @@
-package io.github.mpao.popmovies.network;
+package io.github.mpao.popmovies.models.network;
 
-import io.github.mpao.popmovies.Movie;
+import io.github.mpao.popmovies.entities.Movie;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

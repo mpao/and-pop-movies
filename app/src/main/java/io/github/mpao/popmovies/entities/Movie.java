@@ -1,4 +1,4 @@
-package io.github.mpao.popmovies;
+package io.github.mpao.popmovies.entities;
 
 import android.os.Parcel;
 import android.os.Parcelable;

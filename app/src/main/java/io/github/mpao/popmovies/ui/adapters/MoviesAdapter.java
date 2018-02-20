@@ -1,4 +1,4 @@
-package io.github.mpao.popmovies;
+package io.github.mpao.popmovies.ui.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import com.squareup.picasso.Picasso;
 import java.util.List;
+import io.github.mpao.popmovies.R;
 import io.github.mpao.popmovies.databinding.PosterBinding;
+import io.github.mpao.popmovies.entities.Movie;
+import io.github.mpao.popmovies.ui.DetailActivity;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
 
@@ -64,16 +66,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
             posterVIew.setPoster( movie );
             String imageUrl = context.getString(R.string.api_imageurl).concat( movie.getPosterPath() );
             Picasso.with(context).load( imageUrl ).into(posterVIew.posterImage);
-            posterVIew.posterImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(context, DetailActivity.class);
-                    intent.putExtra("movie", movie);
-                    ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                            (Activity) context, posterVIew.posterImage, "image"
-                    );
-                    context.startActivity(intent, options.toBundle());
-                }
+            posterVIew.posterImage.setOnClickListener( view -> {
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("movie", movie);
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        (Activity) context, posterVIew.posterImage, "image"
+                );
+                context.startActivity(intent, options.toBundle());
             });
             posterVIew.executePendingBindings();
         }

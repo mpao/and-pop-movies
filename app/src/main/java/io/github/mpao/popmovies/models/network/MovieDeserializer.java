@@ -1,4 +1,4 @@
-package io.github.mpao.popmovies.network;
+package io.github.mpao.popmovies.models.network;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
@@ -6,7 +6,7 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import java.lang.reflect.Type;
-import io.github.mpao.popmovies.Movie;
+import io.github.mpao.popmovies.entities.Movie;
 
 public class MovieDeserializer implements JsonDeserializer<Movie[]> {
 

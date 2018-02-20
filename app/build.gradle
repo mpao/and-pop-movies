@@ -6,9 +6,8 @@ android {
         applicationId "io.github.mpao.popmovies"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionCode 2
+        versionName "2.0"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -21,6 +20,10 @@ android {
     lintOptions { disable 'GoogleAppIndexingWarning' }
     dataBinding.enabled = true
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 repositories {
@@ -29,13 +32,24 @@ repositories {
 
 ext.supportLibs = "26.1.0"
 ext.retrofit    = "2.3.0"
+ext.aac         = "1.1.0"
+ext.dagger      = "2.14.1"
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:$supportLibs"
     implementation "com.android.support:design:$supportLibs"
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation "com.android.support.constraint:constraint-layout:1.0.2"
+    implementation "com.squareup.picasso:picasso:2.5.2"
+    // retrofit & gson
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    // ViewModel and LiveData
+    implementation "android.arch.lifecycle:extensions:$aac"
+    implementation "android.arch.lifecycle:common-java8:$aac"
+    // dagger
+    compile "com.google.dagger:dagger:$dagger"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger"
+    provided "javax.annotation:jsr250-api:1.0"
+
 }

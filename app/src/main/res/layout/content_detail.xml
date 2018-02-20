@@ -7,7 +7,7 @@
     <data>
         <variable
             name="movie"
-            type="io.github.mpao.popmovies.Movie"/>
+            type="io.github.mpao.popmovies.entities.Movie"/>
     </data>
 
     <android.support.v4.widget.NestedScrollView
@@ -52,7 +52,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_margin"
-                android:layout_marginLeft="@dimen/default_margin"
                 android:layout_marginTop="@dimen/default_margin"
                 android:text="@{movie.voteAverage}"
                 app:layout_constraintStart_toEndOf="@+id/thumbnail"
@@ -65,7 +64,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_margin"
-                android:layout_marginLeft="@dimen/default_margin"
                 android:text="@{movie.releaseDate}"
                 app:layout_constraintStart_toEndOf="@+id/thumbnail"
                 app:layout_constraintTop_toTopOf="parent"

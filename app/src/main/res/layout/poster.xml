@@ -4,7 +4,7 @@
     <data>
         <variable
             name="poster"
-            type="io.github.mpao.popmovies.Movie"/>
+            type="io.github.mpao.popmovies.entities.Movie"/>
     </data>
 
     <ImageView

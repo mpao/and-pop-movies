@@ -1,10 +1,12 @@
-package io.github.mpao.popmovies;
+package io.github.mpao.popmovies.ui;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import com.squareup.picasso.Picasso;
+import io.github.mpao.popmovies.R;
 import io.github.mpao.popmovies.databinding.ActivityDetailBinding;
+import io.github.mpao.popmovies.entities.Movie;
 
 public class DetailActivity extends AppCompatActivity {
 

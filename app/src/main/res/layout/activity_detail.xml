@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="movie" type="io.github.mpao.popmovies.Movie"/>
+        <variable name="movie" type="io.github.mpao.popmovies.entities.Movie"/>
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -65,7 +65,7 @@
             android:layout_margin="@dimen/fab_margin"
             app:layout_anchor="@id/app_bar"
             app:layout_anchorGravity="bottom|end"
-            app:srcCompat="@drawable/ic_favorite"/>-->
+            app:srcCompat="@drawaic_favorite_borderrite"/>-->
 
     </android.support.design.widget.CoordinatorLayout>
 
