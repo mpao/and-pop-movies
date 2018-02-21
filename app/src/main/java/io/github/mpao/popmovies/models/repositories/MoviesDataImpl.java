@@ -51,7 +51,7 @@ public class MoviesDataImpl implements MoviesData{
             }
             @Override
             public void onFailure(Call<Movie[]> call, Throwable t) {
-                //todo action on error
+                data.setValue(null);
             }
         };
     }

@@ -3,13 +3,13 @@ package io.github.mpao.popmovies.ui;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import io.github.mpao.popmovies.R;
 import io.github.mpao.popmovies.databinding.MovieFragmentBinding;
 import io.github.mpao.popmovies.entities.MovieListType;
@@ -44,26 +44,36 @@ public class MoviesFragment extends Fragment {
         binding.list.setLayoutManager(lm);
         binding.list.setHasFixedSize(true);
 
-        return binding.getRoot();
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-
-        super.onActivityCreated(savedInstanceState);
+        // get data from viewmodel
         MovieListType type = (MovieListType) getArguments().getSerializable("type");
-
         MoviesViewModel viewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
         if( savedInstanceState == null) {
             viewModel.init(type);
         }
+        this.observeData(viewModel);
+
+        // pull to refresh
+        binding.refresh.setColorSchemeColors(getResources().getColor(R.color.colorAccent));
+        binding.refresh.setRefreshing(true);
+        binding.refresh.setOnRefreshListener(() -> {
+            viewModel.init(type);
+            this.observeData(viewModel);
+        });
+
+        return binding.getRoot();
+    }
+
+    private void observeData(MoviesViewModel viewModel){
+
         viewModel.getData().observe(this, list ->{
-            if(list != null){
-                MoviesAdapter adapter = new MoviesAdapter( list );
-                binding.list.setAdapter(adapter);
-                binding.refresh.setRefreshing(false);
+            MoviesAdapter adapter = new MoviesAdapter( list );
+            binding.list.setAdapter(adapter);
+            binding.refresh.setRefreshing(false);
+            if(list == null){
+                Toast.makeText(getContext(), getString(R.string.network_error), Toast.LENGTH_LONG).show();
             }
         });
 
     }
+
 }
