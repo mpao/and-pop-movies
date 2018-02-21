@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
         // set up the bottom menu navigation
         binding.navigation.setOnNavigationItemSelectedListener( item -> {
             switch (item.getItemId()) {
-                case R.id.navigation_home:          insertFragment( MovieListType.POPULAR );   return true;
-                case R.id.navigation_dashboard:     insertFragment( MovieListType.TOP_RATED ); return true;
-                case R.id.navigation_notifications: insertFragment( MovieListType.FAVORITES ); return true;
+                case R.id.navigation_popular:   insertFragment( MovieListType.POPULAR ); return true;
+                case R.id.navigation_top_rated: insertFragment( MovieListType.TOP_RATED ); return true;
+                case R.id.navigation_favorites: insertFragment( MovieListType.FAVORITES ); return true;
             }
             return false;
         });
