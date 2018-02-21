@@ -3,6 +3,7 @@ package io.github.mpao.popmovies.ui;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import io.github.mpao.popmovies.R;
 import io.github.mpao.popmovies.databinding.MainActivityBinding;
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     // define which fragment will be open in onCreate method
     private final MovieListType DEFAULT = MovieListType.POPULAR;
+    FragmentManager fm = getSupportFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +39,37 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * Insert a fragment inside the container view of the activity
-     * @param type define the type of the movie list showed in the fragment
+    /* NO Java-doc
+     * Add a new fragment and hide the other. Using hide/show instead of replace method.
+     * This method allows to keep the data and the position of the recyclerview even at the fast change of
+     * fragment with the bottom navigation tab.
+     * I dont add all the fragments on activity creation, but only if the user request it, just for
+     * saving resources and data network
      */
     private void insertFragment(MovieListType type){
 
-        Fragment fragment = MoviesFragment.newInstance(type);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+        // scan the enum for values
+        for ( MovieListType t: MovieListType.values()) {
+            Fragment fragment = searchForReusableFragment(t);
+            if( t!= type)
+                fm.beginTransaction().hide(fragment).commit();
+            else{
+                if( !fragment.isAdded() ){
+                    fm.beginTransaction().add(R.id.container, fragment, type.getValue()).commit();
+                }
+                fm.beginTransaction().show(fragment).commit();
+            }
+        }
+
+    }
+
+    /* NO Java-doc
+     * Fragments are created only if a previous one of the same type doesnt exist
+     */
+    private Fragment searchForReusableFragment(MovieListType type){
+
+        return fm.findFragmentByTag( type.getValue() ) == null ?
+                MoviesFragment.newInstance(type) : fm.findFragmentByTag( type.getValue() );
 
     }
 
