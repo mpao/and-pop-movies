@@ -55,7 +55,7 @@
         <include
             android:id="@+id/content"
             bind:movie="@{movie}"
-            layout="@layout/content_detail"/>
+            layout="@layout/detail_content"/>
 
         <!-- fav button for step 2
         <android.support.design.widget.FloatingActionButton

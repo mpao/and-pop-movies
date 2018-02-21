@@ -5,18 +5,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import com.squareup.picasso.Picasso;
 import io.github.mpao.popmovies.R;
-import io.github.mpao.popmovies.databinding.ActivityDetailBinding;
+import io.github.mpao.popmovies.databinding.DetailActivityBinding;
 import io.github.mpao.popmovies.entities.Movie;
 
 public class DetailActivity extends AppCompatActivity {
 
-    ActivityDetailBinding detailActivity;
+    DetailActivityBinding detailActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        detailActivity = DataBindingUtil.setContentView(this, R.layout.activity_detail);
+        detailActivity = DataBindingUtil.setContentView(this, R.layout.detail_activity);
 
         // get intent information about the movie
         Movie movie = getIntent().getParcelableExtra("movie"); //todo check null
