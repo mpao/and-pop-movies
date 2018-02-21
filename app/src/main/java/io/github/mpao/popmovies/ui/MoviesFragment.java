@@ -19,7 +19,6 @@ import io.github.mpao.popmovies.viewmodels.MoviesViewModel;
 public class MoviesFragment extends Fragment {
 
     private MovieFragmentBinding binding;
-    private static final String TYPE = "type";
 
     public MoviesFragment() {
         // Required empty public constructor
@@ -29,27 +28,9 @@ public class MoviesFragment extends Fragment {
 
         Fragment fragment = new MoviesFragment();
         Bundle args = new Bundle();
-        args.putSerializable(TYPE, type);
+        args.putSerializable("type", type);
         fragment.setArguments( args);
         return fragment;
-
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-
-        super.onActivityCreated(savedInstanceState);
-        MovieListType type = (MovieListType) getArguments().getSerializable(TYPE);
-
-        MoviesViewModel viewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
-        viewModel.init( type );
-        viewModel.getData().observe(this, list ->{
-            if(list != null){
-                MoviesAdapter adapter = new MoviesAdapter( list );
-                binding.list.setAdapter(adapter);
-                binding.refresh.setRefreshing(false);
-            }
-        });
 
     }
 
@@ -66,4 +47,23 @@ public class MoviesFragment extends Fragment {
         return binding.getRoot();
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+
+        super.onActivityCreated(savedInstanceState);
+        MovieListType type = (MovieListType) getArguments().getSerializable("type");
+
+        MoviesViewModel viewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
+        if( savedInstanceState == null) {
+            viewModel.init(type);
+        }
+        viewModel.getData().observe(this, list ->{
+            if(list != null){
+                MoviesAdapter adapter = new MoviesAdapter( list );
+                binding.list.setAdapter(adapter);
+                binding.refresh.setRefreshing(false);
+            }
+        });
+
+    }
 }

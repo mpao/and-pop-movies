@@ -9,7 +9,7 @@ import io.github.mpao.popmovies.models.repositories.MoviesDataImpl;
 @Module
 public class MoviesModule {
 
-    @Singleton
+    // this is NOT a Singleton, every MoviesFragment instance has its own repository
     @Provides
     public MoviesData provide(){
         return new MoviesDataImpl();
