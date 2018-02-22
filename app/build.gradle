@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '26.0.3'
     compileSdkVersion 26
     defaultConfig {
         applicationId "io.github.mpao.popmovies"
@@ -49,8 +49,11 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$aac"
     implementation "android.arch.lifecycle:common-java8:$aac"
     // dagger
+    implementation "com.google.firebase:firebase-crash:11.8.0"
     compile "com.google.dagger:dagger:$dagger"
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger"
     provided "javax.annotation:jsr250-api:1.0"
 
 }
+
+apply plugin: 'com.google.gms.google-services'
