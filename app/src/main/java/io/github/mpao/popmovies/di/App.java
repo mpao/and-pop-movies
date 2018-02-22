@@ -12,6 +12,7 @@ public class App extends Application {
         super.onCreate();
         graph = DaggerGraph.builder()
                 .moviesModule( new MoviesModule() )
+                .trailerModule(new TrailerModule())
                 .contextModule( new ContextModule(this) )
                 .retrofitModule( new RetrofitModule(this.getApplicationContext()) )
                 .build();

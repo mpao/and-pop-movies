@@ -6,6 +6,8 @@ import android.content.Context;
 import java.util.Arrays;
 import java.util.List;
 import javax.inject.Inject;
+import javax.inject.Named;
+
 import io.github.mpao.popmovies.R;
 import io.github.mpao.popmovies.di.App;
 import io.github.mpao.popmovies.entities.Movie;
@@ -19,7 +21,7 @@ public class MoviesDataImpl implements MoviesData{
 
     final private MutableLiveData<List<Movie>> data = new MutableLiveData<>();
     @Inject Context context;
-    @Inject MoviesApi api;
+    @Inject @Named("movies") MoviesApi api;
 
     public MoviesDataImpl(){
         App.graph.inject(this);
