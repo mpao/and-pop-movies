@@ -10,10 +10,16 @@
             type="io.github.mpao.popmovies.entities.Movie"/>
     </data>
 
+    <!--
+    scrollview has bottom padding for prevent text or other element under
+    the fab button
+    -->
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:paddingBottom="@dimen/padding_fab"
+        android:clipToPadding="false"
         tools:context="io.github.mpao.popmovies.DetailActivity"
         tools:showIn="@layout/detail_activity">
 

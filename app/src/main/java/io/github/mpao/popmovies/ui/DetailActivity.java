@@ -1,17 +1,21 @@
 package io.github.mpao.popmovies.ui;
 
 import android.databinding.DataBindingUtil;
-import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.MenuItem;
 import com.squareup.picasso.Picasso;
 import io.github.mpao.popmovies.R;
 import io.github.mpao.popmovies.databinding.DetailActivityBinding;
 import io.github.mpao.popmovies.entities.Movie;
+import io.github.mpao.popmovies.ui.adapters.DetailPagerAdapter;
 
 public class DetailActivity extends AppCompatActivity {
 
     DetailActivityBinding detailActivity;
+    protected String imageUrl;
+    protected Movie movie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +24,7 @@ public class DetailActivity extends AppCompatActivity {
         detailActivity = DataBindingUtil.setContentView(this, R.layout.detail_activity);
 
         // get intent information about the movie
-        Movie movie = getIntent().getParcelableExtra("movie"); //todo check null
+        movie = getIntent().getParcelableExtra("movie"); //todo check null
 
         //set the toolbar with the movie title
         detailActivity.toolbar.setTitle( movie.getTitle() );
@@ -29,10 +33,15 @@ public class DetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // set bind for movie object
-        detailActivity.setMovie(movie);
-        String imageUrl = getString(R.string.api_imageurl).concat( movie.getPosterPath() );
+        //detailActivity.setMovie(movie);
+        imageUrl = getString(R.string.api_imageurl).concat( movie.getPosterPath() );
         Picasso.with(this).load( imageUrl ).into(detailActivity.toolbarMovie);
-        Picasso.with(this).load( imageUrl ).into(detailActivity.content.thumbnail);
+
+        // Set up the ViewPager with the sections adapter.
+        DetailPagerAdapter pagerAdapter = new DetailPagerAdapter( getSupportFragmentManager() );
+        detailActivity.viewpager.setAdapter(pagerAdapter);
+        detailActivity.viewpager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(detailActivity.tabs));
+        detailActivity.tabs.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(detailActivity.viewpager));
 
     }
 

@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">Pop Movies</string>
-    <string name="api_baseurl">http://api.themoviedb.org</string>
-    <string name="api_imageurl">http://image.tmdb.org/t/p/w185</string>
+    <string name="api_baseurl" translatable="false">http://api.themoviedb.org</string>
+    <string name="api_imageurl" translatable="false">http://image.tmdb.org/t/p/w185</string>
     <string name="network_error">Oh no! Something goes wrong :|</string>
     <string name="order_popular">Most popular</string>
     <string name="order_rated">Top rated</string>
     <string name="title_popular">Popular</string>
     <string name="title_rated">Top Rated</string>
     <string name="title_favorites">Favorites</string>
+    <string name="tab_text_1">Information</string>
+    <string name="tab_text_2">Trailers</string>
+    <string name="tab_text_3">Reviews</string>
 </resources>

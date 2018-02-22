@@ -3,7 +3,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
-
+    <dimen name="padding_fab">64dp</dimen>
     <dimen name="thumbnail_width">150dp</dimen>
     <dimen name="text_size_mid">30sp</dimen>
     <dimen name="text_size_big">42sp</dimen>
