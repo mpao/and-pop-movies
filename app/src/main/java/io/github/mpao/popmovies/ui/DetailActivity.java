@@ -3,6 +3,7 @@ package io.github.mpao.popmovies.ui;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import com.squareup.picasso.Picasso;
 import io.github.mpao.popmovies.R;
 import io.github.mpao.popmovies.databinding.DetailActivityBinding;
@@ -33,6 +34,22 @@ public class DetailActivity extends AppCompatActivity {
         Picasso.with(this).load( imageUrl ).into(detailActivity.toolbarMovie);
         Picasso.with(this).load( imageUrl ).into(detailActivity.content.thumbnail);
 
+    }
+
+    /**
+     * I override the setDisplayHomeAsUpEnabled in the toolbar because I dont want the "Up behavior" but
+     * the "Back" one. In this way, I can return on the recyclerview with the transitionName animation.
+     * @param item selected menu item
+     * @return boolean state
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
