@@ -11,7 +11,7 @@ import io.github.mpao.popmovies.R;
 import io.github.mpao.popmovies.entities.Movie;
 import io.github.mpao.popmovies.entities.Trailer;
 import io.github.mpao.popmovies.models.network.MovieDeserializer;
-import io.github.mpao.popmovies.models.network.MoviesApi;
+import io.github.mpao.popmovies.models.network.TheMovieDbApi;
 import io.github.mpao.popmovies.models.network.TrailerDeserializer;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -28,22 +28,22 @@ public class RetrofitModule {
     @Singleton
     @Provides
     @Named("movies")
-    public MoviesApi provideMovies(){
+    public TheMovieDbApi provideMovies(){
 
         Gson gson = new GsonBuilder().registerTypeAdapter(Movie[].class, new MovieDeserializer()).create();
         Retrofit retrofit = getRetrofit(gson);
-        return retrofit.create(MoviesApi.class);
+        return retrofit.create(TheMovieDbApi.class);
 
     }
 
     @Singleton
     @Provides
     @Named("trailers")
-    public MoviesApi provideTrailers(){
+    public TheMovieDbApi provideTrailers(){
 
         Gson gson = new GsonBuilder().registerTypeAdapter(Trailer[].class, new TrailerDeserializer()).create();
         Retrofit retrofit = getRetrofit(gson);
-        return retrofit.create(MoviesApi.class);
+        return retrofit.create(TheMovieDbApi.class);
 
     }
 

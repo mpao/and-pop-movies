@@ -10,18 +10,18 @@ import javax.inject.Named;
 import io.github.mpao.popmovies.R;
 import io.github.mpao.popmovies.di.App;
 import io.github.mpao.popmovies.entities.Trailer;
-import io.github.mpao.popmovies.models.network.MoviesApi;
+import io.github.mpao.popmovies.models.network.TheMovieDbApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TrailerDataImpl implements TrailerData {
+public class TrailersDataImpl implements TrailersData {
 
     final private MutableLiveData<List<Trailer>> data = new MutableLiveData<>();
     @Inject Context context;
-    @Inject @Named("trailers") MoviesApi api;
+    @Inject @Named("trailers") TheMovieDbApi api;
 
-    public TrailerDataImpl(){
+    public TrailersDataImpl(){
         App.graph.inject(this);
     }
 

@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import io.github.mpao.popmovies.ui.DetailInfoFragment;
-import io.github.mpao.popmovies.ui.DetailTrailerFragment;
-import io.github.mpao.popmovies.ui.PlaceholderFragment;
+import io.github.mpao.popmovies.ui.DetailTrailersFragment;
+import io.github.mpao.popmovies.ui.DetailReviewsFragment;
 
 public class DetailPagerAdapter extends FragmentPagerAdapter {
 
@@ -19,8 +19,8 @@ public class DetailPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position){
             case 0: fragment = new DetailInfoFragment(); break;
-            case 1: fragment = new DetailTrailerFragment(); break;
-            case 2: fragment = new PlaceholderFragment(); break;
+            case 1: fragment = new DetailTrailersFragment(); break;
+            case 2: fragment = new DetailReviewsFragment(); break;
         }
         return fragment;
     }

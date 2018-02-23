@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import io.github.mpao.popmovies.R;
 import io.github.mpao.popmovies.databinding.DetailInfoFragmentBinding;
-import io.github.mpao.popmovies.viewmodels.TrailerViewModel;
+import io.github.mpao.popmovies.viewmodels.TrailersViewModel;
 
-public class DetailTrailerFragment extends Fragment {
+public class DetailTrailersFragment extends Fragment {
 
     private DetailInfoFragmentBinding binding;
 
@@ -24,7 +24,7 @@ public class DetailTrailerFragment extends Fragment {
         DetailActivity activity = (DetailActivity) getActivity();
 
         // get data from viewmodel
-        TrailerViewModel viewModel = ViewModelProviders.of(this).get(TrailerViewModel.class);
+        TrailersViewModel viewModel = ViewModelProviders.of(this).get(TrailersViewModel.class);
         viewModel.init( activity.movie.getId() );
         this.observeData(viewModel);
 
@@ -32,7 +32,7 @@ public class DetailTrailerFragment extends Fragment {
 
     }
 
-    private void observeData(TrailerViewModel viewModel){
+    private void observeData(TrailersViewModel viewModel){
 
         viewModel.getData().observe(this, list ->{
             if(list == null){

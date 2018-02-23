@@ -6,12 +6,13 @@ import java.util.List;
 import javax.inject.Inject;
 import io.github.mpao.popmovies.di.App;
 import io.github.mpao.popmovies.entities.Trailer;
-import io.github.mpao.popmovies.models.repositories.TrailerData;
+import io.github.mpao.popmovies.models.repositories.TrailersData;
 
-public class TrailerViewModel extends ViewModel{
+public class TrailersViewModel extends ViewModel{
 
     private LiveData<List<Trailer>> data;
-    @Inject TrailerData repo;
+    @Inject
+    TrailersData repo;
 
     public void init(int id)  {
 

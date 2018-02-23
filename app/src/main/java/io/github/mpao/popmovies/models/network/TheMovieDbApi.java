@@ -7,7 +7,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface MoviesApi {
+public interface TheMovieDbApi {
 
     // retrofit method for get the popular movies and return them in an array
     @GET("/3/movie/popular")
