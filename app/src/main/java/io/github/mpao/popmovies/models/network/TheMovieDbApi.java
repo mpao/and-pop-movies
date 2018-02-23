@@ -1,6 +1,7 @@
 package io.github.mpao.popmovies.models.network;
 
 import io.github.mpao.popmovies.entities.Movie;
+import io.github.mpao.popmovies.entities.Review;
 import io.github.mpao.popmovies.entities.Trailer;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -20,5 +21,9 @@ public interface TheMovieDbApi {
     // retrofit method for get trailers for the ID
     @GET("/3/movie/{id}/videos")
     Call<Trailer[]> getTrailers(@Path("id") int id, @Query("api_key") String key);
+
+    // retrofit method for get reviews for the ID
+    @GET("/3/movie/{id}/reviews")
+    Call<Review[]> getReviews(@Path("id") int id, @Query("api_key") String key);
 
 }

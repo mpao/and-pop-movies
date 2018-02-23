@@ -5,13 +5,13 @@ import android.arch.lifecycle.ViewModel;
 import java.util.List;
 import javax.inject.Inject;
 import io.github.mpao.popmovies.di.App;
-import io.github.mpao.popmovies.entities.Trailer;
-import io.github.mpao.popmovies.models.repositories.TrailersData;
+import io.github.mpao.popmovies.entities.Review;
+import io.github.mpao.popmovies.models.repositories.ReviewsData;
 
-public class TrailersViewModel extends ViewModel{
+public class ReviewsViewModel extends ViewModel {
 
-    private LiveData<List<Trailer>> data;
-    @Inject TrailersData repo;
+    private LiveData<List<Review>> data;
+    @Inject ReviewsData repo;
 
     public void init(int id)  {
 
@@ -20,7 +20,7 @@ public class TrailersViewModel extends ViewModel{
 
     }
 
-    public LiveData<List<Trailer>> getData() {
+    public LiveData<List<Review>> getData() {
 
         return this.data;
 

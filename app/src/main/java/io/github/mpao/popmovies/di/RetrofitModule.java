@@ -9,8 +9,10 @@ import dagger.Module;
 import dagger.Provides;
 import io.github.mpao.popmovies.R;
 import io.github.mpao.popmovies.entities.Movie;
+import io.github.mpao.popmovies.entities.Review;
 import io.github.mpao.popmovies.entities.Trailer;
 import io.github.mpao.popmovies.models.network.MovieDeserializer;
+import io.github.mpao.popmovies.models.network.ReviewDeserializer;
 import io.github.mpao.popmovies.models.network.TheMovieDbApi;
 import io.github.mpao.popmovies.models.network.TrailerDeserializer;
 import retrofit2.Retrofit;
@@ -42,6 +44,17 @@ public class RetrofitModule {
     public TheMovieDbApi provideTrailers(){
 
         Gson gson = new GsonBuilder().registerTypeAdapter(Trailer[].class, new TrailerDeserializer()).create();
+        Retrofit retrofit = getRetrofit(gson);
+        return retrofit.create(TheMovieDbApi.class);
+
+    }
+
+    @Singleton
+    @Provides
+    @Named("reviews")
+    public TheMovieDbApi provideReviews(){
+
+        Gson gson = new GsonBuilder().registerTypeAdapter(Review[].class, new ReviewDeserializer()).create();
         Retrofit retrofit = getRetrofit(gson);
         return retrofit.create(TheMovieDbApi.class);
 
