@@ -14,7 +14,6 @@ import io.github.mpao.popmovies.ui.adapters.DetailPagerAdapter;
 public class DetailActivity extends AppCompatActivity {
 
     DetailActivityBinding detailActivity;
-    protected String imageUrl;
     protected Movie movie;
 
     @Override
@@ -26,22 +25,8 @@ public class DetailActivity extends AppCompatActivity {
         // get intent information about the movie
         movie = getIntent().getParcelableExtra("movie"); //todo check null
 
-        //set the toolbar with the movie title
-        detailActivity.toolbar.setTitle( movie.getTitle() );
-        setSupportActionBar( detailActivity.toolbar );
-        assert getSupportActionBar() != null;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        // set bind for movie object
-        //detailActivity.setMovie(movie);
-        imageUrl = getString(R.string.api_imageurl).concat( movie.getPosterPath() );
-        Picasso.with(this).load( imageUrl ).into(detailActivity.toolbarMovie);
-
-        // Set up the ViewPager with the sections adapter.
-        DetailPagerAdapter pagerAdapter = new DetailPagerAdapter( getSupportFragmentManager() );
-        detailActivity.viewpager.setAdapter(pagerAdapter);
-        detailActivity.viewpager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(detailActivity.tabs));
-        detailActivity.tabs.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(detailActivity.viewpager));
+        setUpToolbar(movie);
+        setUpViewPager();
 
     }
 
@@ -59,6 +44,33 @@ public class DetailActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /*
+     * set the toolbar with the movie title and image
+     */
+    private void setUpToolbar(Movie movie){
+
+        detailActivity.toolbar.setTitle( movie.getTitle() );
+        setSupportActionBar( detailActivity.toolbar );
+        assert getSupportActionBar() != null;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        String imageUrl = getString(R.string.api_imageurl).concat( movie.getPosterPath() );
+        Picasso.with(this).load( imageUrl ).into(detailActivity.toolbarMovie);
+
+    }
+
+    /*
+     * Set up the ViewPager with the sections adapter.
+     */
+    private void setUpViewPager(){
+
+        DetailPagerAdapter pagerAdapter = new DetailPagerAdapter( getSupportFragmentManager() );
+        detailActivity.viewpager.setAdapter(pagerAdapter);
+        detailActivity.viewpager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(detailActivity.tabs));
+        detailActivity.tabs.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(detailActivity.viewpager));
+
     }
 
 }
