@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="trailer"
+            type="io.github.mpao.popmovies.entities.Trailer" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordered_backgroud"
+        android:padding="@dimen/default_margin">
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/TrailerTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:text="@{trailer.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/preview"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit"/>
+
+        <FrameLayout
+            android:id="@+id/preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/play_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                android:id="@+id/play"
+                android:layout_width="@dimen/play_button"
+                android:layout_height="@dimen/play_button"
+                android:layout_gravity="center"
+                android:contentDescription="@string/play_image"
+                android:tint="@android:color/white"
+                app:srcCompat="@drawable/ic_play"/>
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/site"
+            style="@style/TrailerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:text="@{trailer.site}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/preview"
+            tools:text="Youtube"/>
+
+        <TextView
+            android:id="@+id/type"
+            style="@style/TrailerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:text="@{trailer.type}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/site"
+            app:layout_constraintStart_toEndOf="@+id/site"
+            tools:text="Trailer"/>
+
+        <TextView
+            android:id="@+id/size"
+            style="@style/TrailerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:text="@{trailer.size}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/type"
+            app:layout_constraintStart_toEndOf="@+id/type"
+            tools:text="1080p"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

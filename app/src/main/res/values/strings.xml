@@ -11,4 +11,8 @@
     <string name="tab_text_1">Information</string>
     <string name="tab_text_2">Trailers</string>
     <string name="tab_text_3">Reviews</string>
+    <string name="play_image">Play</string>
+    <string name="empty_video_list">no videos still available for this movie</string>
+    <string name="preview_url">https://img.youtube.com/vi/%1$s/0.jpg</string>
+    <string name="watch_url">http://www.youtube.com/watch?v=%1$s</string>
 </resources>

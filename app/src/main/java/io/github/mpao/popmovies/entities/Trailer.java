@@ -31,6 +31,10 @@ public class Trailer implements Comparable<Trailer>{
     @Expose
     public String type;
 
+    public String getSize() {
+        return String.valueOf(size)+"p";
+    }
+
     @Override
     public int compareTo(@NonNull Trailer o) {
         return this.name.compareTo(o.name);
