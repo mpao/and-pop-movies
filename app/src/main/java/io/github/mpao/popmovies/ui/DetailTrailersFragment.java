@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import io.github.mpao.popmovies.R;
 import io.github.mpao.popmovies.databinding.DetailTrailerFragmentBinding;
-import io.github.mpao.popmovies.ui.adapters.TrailerAdapter;
+import io.github.mpao.popmovies.ui.adapters.TrailersAdapter;
 import io.github.mpao.popmovies.viewmodels.TrailersViewModel;
 
 public class DetailTrailersFragment extends Fragment {
@@ -57,7 +57,7 @@ public class DetailTrailersFragment extends Fragment {
     private void observeData(TrailersViewModel viewModel){
 
         viewModel.getData().observe(this, list ->{
-            TrailerAdapter adapter = new TrailerAdapter( list );
+            TrailersAdapter adapter = new TrailersAdapter( list );
             binding.list.setAdapter(adapter);
             binding.refresh.setRefreshing(false);
             //todo, messaggio visibility quando sparisce il loader

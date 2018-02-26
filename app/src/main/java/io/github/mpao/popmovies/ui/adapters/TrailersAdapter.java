@@ -12,19 +12,19 @@ import io.github.mpao.popmovies.R;
 import io.github.mpao.popmovies.databinding.TrailerBinding;
 import io.github.mpao.popmovies.entities.Trailer;
 
-public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.ViewHolder>{
+public class TrailersAdapter extends RecyclerView.Adapter<TrailersAdapter.ViewHolder>{
 
     private final List<Trailer> list;
     private Context context;
 
-    public TrailerAdapter(List<Trailer> list){
+    public TrailersAdapter(List<Trailer> list){
 
         this.list = list;
 
     }
 
     @Override
-    public TrailerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TrailersAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         this.context = parent.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from( context );
@@ -34,7 +34,7 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(TrailerAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(TrailersAdapter.ViewHolder holder, int position) {
 
         Trailer trailer = list.get(position);
         holder.bind( trailer );
@@ -75,4 +75,5 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.ViewHold
         }
 
     }
+
 }
