@@ -12,3 +12,7 @@ stored in a separate resource file called *keys.xml*. This file is in `.gitignor
     <string name="tmdb_key">[ put your key here ]</string>
 </resources>
 ```
+
+### demo screenshots
+
+![demo](demo.png)
