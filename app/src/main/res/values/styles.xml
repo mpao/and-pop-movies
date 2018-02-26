@@ -38,5 +38,9 @@
         <item name="android:textSize">@dimen/text_size_lit</item>
         <item name="android:textColor">@color/textSecondary</item>
     </style>
-
+    <style name="ReviewButton" parent="Base.Widget.AppCompat.Button">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>
