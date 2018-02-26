@@ -15,4 +15,7 @@
     <string name="empty_video_list">no videos still available for this movie</string>
     <string name="preview_url">https://img.youtube.com/vi/%1$s/0.jpg</string>
     <string name="watch_url">http://www.youtube.com/watch?v=%1$s</string>
+    <string name="open_review">Open in browser</string>
+    <string name="review_author">Reviewed by %1$s</string>
+    <string name="empty_review_list">no reviews still available for this movie</string>
 </resources>
