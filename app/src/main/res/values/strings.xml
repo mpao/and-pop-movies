@@ -19,4 +19,6 @@
     <string name="review_author">%1$s said:</string>
     <string name="ic_quote">quote</string>
     <string name="empty_review_list">no reviews still available for this movie</string>
+    <string name="add_favorite">added to favorites</string>
+    <string name="remove_favorite">removed from favorites</string>
 </resources>

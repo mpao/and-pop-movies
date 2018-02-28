@@ -55,6 +55,25 @@ public class Movie implements Parcelable{
     @Expose
     private String releaseDate;
 
+    /*
+     * Simplyfied constructor for Cursor and database
+     */
+    public Movie(
+                  int id,
+                  double voteAverage,
+                  String title,
+                  String posterPath,
+                  String overview,
+                  String releaseDate
+    ) {
+        this.id = id;
+        this.voteAverage = voteAverage;
+        this.title = title;
+        this.posterPath = posterPath;
+        this.overview = overview;
+        this.releaseDate = releaseDate;
+    }
+
     public String getTitle() {
         return title;
     }

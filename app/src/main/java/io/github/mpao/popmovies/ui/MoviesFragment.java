@@ -19,6 +19,7 @@ import io.github.mpao.popmovies.viewmodels.MoviesViewModel;
 public class MoviesFragment extends Fragment {
 
     private MovieFragmentBinding binding;
+    private MoviesViewModel viewModel;
 
     public MoviesFragment() {
         // Required empty public constructor
@@ -46,7 +47,7 @@ public class MoviesFragment extends Fragment {
 
         // get data from viewmodel
         MovieListType type = (MovieListType) getArguments().getSerializable("type");
-        MoviesViewModel viewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
         if( savedInstanceState == null) {
             viewModel.init(type);
         }
@@ -61,6 +62,20 @@ public class MoviesFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        MovieListType type = (MovieListType) getArguments().getSerializable("type");
+        // refresh the list only for favorite: if I add or remove a favorite, when I
+        // return to the favs list, this has to be updated.
+        if(type == MovieListType.FAVORITES) {
+            viewModel.init(type);
+            this.observeData(viewModel);
+        }
+
     }
 
     private void observeData(MoviesViewModel viewModel){

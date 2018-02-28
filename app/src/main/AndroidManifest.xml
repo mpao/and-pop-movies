@@ -27,6 +27,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="io.github.mpao.popmovies.ui.MainActivity"/>
         </activity>
+
+        <provider
+            android:name=".models.database.MoviesContentProvider"
+            android:authorities="io.github.mpao.popmovies"
+            android:exported="false">
+        </provider>
+
     </application>
 
 </manifest>

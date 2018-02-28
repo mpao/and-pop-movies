@@ -2,6 +2,7 @@ package io.github.mpao.popmovies.di;
 
 import javax.inject.Singleton;
 import dagger.Component;
+import io.github.mpao.popmovies.models.repositories.FavoriteModel;
 import io.github.mpao.popmovies.models.repositories.MoviesDataImpl;
 import io.github.mpao.popmovies.models.repositories.ReviewsDataImpl;
 import io.github.mpao.popmovies.models.repositories.TrailersDataImpl;
@@ -26,4 +27,5 @@ public interface Graph {
     void inject(TrailersDataImpl trailerData);
     void inject(ReviewsViewModel reviewsViewModel);
     void inject(ReviewsDataImpl reviewsData);
+    void inject(FavoriteModel favoriteModel);
 }
