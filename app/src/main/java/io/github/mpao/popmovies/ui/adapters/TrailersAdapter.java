@@ -72,6 +72,15 @@ public class TrailersAdapter extends RecyclerView.Adapter<TrailersAdapter.ViewHo
                 context.startActivity(intent);
             });
 
+            trailerBinding.share.setOnClickListener( view ->{
+                String message = context.getString(R.string.share_message);
+                String url     = context.getString(R.string.watch_url, trailer.key);
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, message.concat(url));
+                intent.setType("text/plain");
+                context.startActivity(intent);
+            });
+
         }
 
     }

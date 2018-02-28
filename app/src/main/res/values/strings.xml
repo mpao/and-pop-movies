@@ -21,4 +21,6 @@
     <string name="empty_review_list">no reviews still available for this movie</string>
     <string name="add_favorite">added to favorites</string>
     <string name="remove_favorite">removed from favorites</string>
+    <string name="share_label">Share the trailer</string>
+    <string name="share_message">Watch this\n</string>
 </resources>
